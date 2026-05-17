@@ -41,7 +41,7 @@ a {
 }
 #clock-box {
   position: absolute;
-  left: 60px;
+  left: -55px;
   top: 550px;
   font-size: 28px;
   display: none;
@@ -71,7 +71,9 @@ a {
   cursor: pointer;
 }
 .say {
-  margin-left: 5px;
+  line-height: 1.2;
+  font-size: 15px;
+  letter-spacing: 0.5px;
 }
 .space {
   margin-right: 150px;
@@ -83,4 +85,18 @@ a {
   font-size: 25px;
   font-family: monospace;
 
+}
+
+@keyframes wobble {
+    0% { transform: rotate(0deg) scale(1); }
+    15% { transform: rotate(-8deg) scale(1.05); }
+    30% { transform: rotate(8deg) scale(1.08); }
+    45% { transform: rotate(-6deg) scale(1.05); }
+    60% { transform: rotate(6deg) scale(1.08); }
+    75% { transform: rotate(-3deg) scale(1.03); }
+    100% { transform: rotate(0deg) scale(1); }
+}
+
+.world-line{
+    margin-top: 40px;
 }
