@@ -27,15 +27,19 @@
                     <source src="aud.mp3" type="audio/mp3" />
                     <embed height="100" width="100" src="aud.mp3" />
             </audio>
-            <div id="wrap">t
+            <div id="wrap">
                 <div id="text">
                     <div id="code">
-                      <span class="say">HAPPY BIRTHDAY TO TANUSREE</span><br>
-                      <span class="say">A TRULY REMARKABLE GIRL!!</span><br>             
-                      <span class="say">ON THIS SPECIAL DAY</span><br>
-                      <span class="say">MAY YOUR HEART BE FILLED WITH JOY </span><br>
-                      <span class="say">ENJOY YOUR DAY TO THE FULLEST</span><br>
-                      <span class="say">FROM YOUR SHUBHAM </span><br>
+                    <span class="say">Happiest Birthday To Tanusree ✨</span><br>
+                    <span class="say">A Truly Remarkable Girl 💖</span><br>
+                    <span class="say">
+                        On This Special Day,<br>
+                        May Your Heart Be Filled With Joy
+                    </span><br>
+                    <span class="say">
+                        Enjoy Your Day To The Fullest 🌸
+                    </span><br>
+                    <span class="say">— From Your Shubham 💌</span><br>
                       <span class="say"><span class="space"></span></span> </font>
                           <br />
                           <br />
@@ -188,11 +192,11 @@
 
         var textAnimate = eval(Jscex.compile("async", function () {
 		    var together = new Date();
-		    together.setFullYear(2005, 23, 8); 			
-		    together.setHours(20);						
+		    together.setFullYear(2005, 7, 23); 			
+		    together.setHours(0);						
 		    together.setMinutes(0);					
 		    together.setSeconds(0);					
-		    together.setMilliseconds(2);		
+		    together.setMilliseconds(0);		
 
 		    $("#code").show().typewriter();
             $("#clock-box").fadeIn(500);
@@ -215,6 +219,167 @@
 
         runAsync().start();
     })();
+    </script>
+    <!-- ================= GIFT BUTTON ================= -->
+     <style>
+/* Gift Button */
+#giftBtn{
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background: rgba(255,255,255,0.12);
+    border: 2px solid rgba(255,255,255,0.3);
+    color: white;
+    padding: 14px 22px;
+    border-radius: 50px;
+    font-size: 18px;
+    cursor: pointer;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 0 20px rgba(255,105,180,0.5);
+    transition: 0.4s;
+    z-index: 9999;
+    font-family: Arial, sans-serif;
+    letter-spacing: 1px;
 
-    </script></body></html>
+    animation: wobble 2s infinite;
+    transform-origin: center;
+}
 
+#giftBtn:hover{
+    transform: scale(1.08);
+    box-shadow: 0 0 35px rgba(255,105,180,0.9);
+    background: rgba(255,255,255,0.2);
+}
+
+/* Modal Background */
+#giftModal{
+    display: none;
+    position: fixed;
+    z-index: 99999;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,20,0.85);
+    backdrop-filter: blur(8px);
+    animation: fadeIn 0.6s ease;
+}
+
+/* Video Container */
+.gift-content{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.8);
+    width: 75%;
+    max-width: 850px;
+    background: rgba(255,255,255,0.08);
+    border-radius: 25px;
+    padding: 20px;
+    border: 1px solid rgba(255,255,255,0.2);
+    box-shadow: 0 0 40px rgba(255,105,180,0.5);
+    animation: popup 0.5s forwards;
+}
+
+/* Video */
+.gift-content video{
+    width: 100%;
+    border-radius: 20px;
+}
+
+/* Close Button */
+.closeGift{
+    position: absolute;
+    top: 12px;
+    right: 18px;
+    color: white;
+    font-size: 32px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.closeGift:hover{
+    color: hotpink;
+    transform: rotate(90deg);
+}
+
+/* Small Floating Hearts */
+.heart{
+    position: absolute;
+    color: pink;
+    font-size: 20px;
+    animation: floatHearts 6s linear infinite;
+    opacity: 0.7;
+}
+
+@keyframes popup{
+    to{
+        transform: translate(-50%, -50%) scale(1);
+    }
+}
+
+@keyframes fadeIn{
+    from{opacity:0;}
+    to{opacity:1;}
+}
+
+@keyframes floatHearts{
+    from{
+        transform: translateY(100vh) scale(0.5);
+        opacity:0;
+    }
+    to{
+        transform: translateY(-120vh) scale(1.5);
+        opacity:1;
+    }
+}
+</style>
+
+<!-- Gift Button -->
+<button id="giftBtn">🎁</button>
+
+<!-- Gift Modal -->
+<div id="giftModal">
+    <div class="gift-content">
+        <span class="closeGift">&times;</span>
+
+        <video controls>
+            <source src="gift.mp4" type="video/mp4">
+        </video>
+    </div>
+</div>
+
+<script>
+const giftBtn = document.getElementById("giftBtn");
+const giftModal = document.getElementById("giftModal");
+const closeGift = document.querySelector(".closeGift");
+const giftVideo = document.querySelector("#giftModal video");
+const bgMusic = document.getElementById("myAudio");
+
+giftBtn.onclick = () => {
+    giftModal.style.display = "block";
+    //giftVideo.play();
+    // Pause background music
+    bgMusic.pause();
+}
+
+function closeVideoModal() {
+    giftModal.style.display = "none";
+
+    // Stop video completely
+    giftVideo.pause();
+    giftVideo.currentTime = 0;
+    // Resume background music
+    bgMusic.play();
+}
+
+closeGift.onclick = () => {
+    closeVideoModal();
+}
+
+window.onclick = (e) => {
+    if(e.target == giftModal){
+        closeVideoModal();
+    }
+}
+</script></body></html>
